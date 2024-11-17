@@ -278,6 +278,13 @@ func NewRouter(emitter transport.Emitter,
 				ResponseSchema: "ocpp201/UnclockConnectorResponse.json",
 				Handler:        UnlockConnectorResultHandler{},
 			},
+			"SetChargingProfile": {
+				NewRequest:     func() ocpp.Request { return new(ocpp201.SetChargingProfileRequestJson) },
+				NewResponse:    func() ocpp.Response { return new(ocpp201.SetChargingProfileResponseJson) },
+				RequestSchema:  "ocpp201/SetChargingProfileRequest.json",
+				ResponseSchema: "ocpp201/SetChargingProfileResponse.json",
+				Handler: SetChargingProfileResultHandler{},
+			},
 		},
 	}
 }
