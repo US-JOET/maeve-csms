@@ -172,7 +172,7 @@ func (s *Server) TriggerChargeStation(w http.ResponseWriter, r *http.Request, cs
 }
 
 func (s *Server) SetChargingProfile(w http.ResponseWriter, r *http.Request, csId string) {
-	slog.Debug("[API TRACE] In server.go, SetChargingProfile()")
+	slog.Debug("[API TRACE] In server.go, SetChargingProfile() incoming", r)
 	req := new(ChargingProfileType)
 
 	if err := render.Bind(r, req); err != nil {
@@ -190,6 +190,7 @@ func (s *Server) SetChargingProfile(w http.ResponseWriter, r *http.Request, csId
 	v201CallMaker := handlers.NewCallMaker(settings.MsgEmitter)
 
 	request := ocpp201.SetChargingProfileRequestJson{EvseId: 0, ChargingProfile: ocpp201.ChargingProfileType(*req)}
+	slog.Debug("[API TRACE] JSON request:", request)
 
 	// Send the call
 	v201CallMaker.Send(context.Background(), csId, &request)

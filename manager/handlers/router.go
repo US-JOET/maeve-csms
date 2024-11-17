@@ -105,6 +105,8 @@ func (r Router) route(ctx context.Context, chargeStationId string, message *tran
 			return fmt.Errorf("sending call response: %w", err)
 		}
 	case transport.MessageTypeCallResult:
+		slog.Debug("[API TRACE] we are in route() in router.go, request payload is", message.RequestPayload)
+		slog.Debug("[API TRACE] we are in route() in router.go, response payload is", message.ResponsePayload)
 		route, ok := r.CallResultRoutes[message.Action]
 		slog.Debug("[API TRACE] we are in route() in router.go, in MessageTypeCallResult", "route", route)
 		if !ok {
