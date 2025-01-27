@@ -101,6 +101,12 @@ func NewRouter(emitter transport.Emitter,
 				ResponseSchema: "ocpp201/NotifyReportResponse.json",
 				Handler:        NotifyReportHandler{},
 			},
+			"NotifyChargingLimit": {
+				NewRequest:     func() ocpp.Request { return new(ocpp201.NotifyChargingLimitRequestJson) },
+				RequestSchema:  "ocpp201/NotifyChargingLimitRequest.json",
+				ResponseSchema: "ocpp201/NotifyChargingLimitResponse.json",
+				Handler:        NotifyChargingLimitHandler{},
+			},
 			"StatusNotification": {
 				NewRequest:     func() ocpp.Request { return new(ocpp201.StatusNotificationRequestJson) },
 				RequestSchema:  "ocpp201/StatusNotificationRequest.json",
